@@ -109,14 +109,13 @@ body {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#curr-temp-num {
+.curr-temp-num {
   color: #ffffff;
   font-size: 100px;
   line-height: 90px;
 }
 
-.curr-temp-degrees,
-.curr-temp-c {
+.curr-temp-degrees {
   color: #ffffff;
   font-size: 25px;
   vertical-align: top;
@@ -125,6 +124,7 @@ body {
 }
 
 .curr-temp-bar,
+.curr-temp-c,
 .curr-temp-f {
   color: #ffffff;
   font-size: 25px;
@@ -133,17 +133,9 @@ body {
   font-weight: lighter;
 }
 
-/* for temp clicking - default & lighter */
-
-.temp-weight-normal {
+.curr-temp .active {
   font-weight: normal;
 }
-
-.temp-weight-light {
-  font-weight: lighter;
-}
-
-/* end */
 
 .weather-type {
   color: #ffffff;

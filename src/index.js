@@ -38,8 +38,10 @@ cityDayTime.innerHTML = formatDate(now);
 function showTemperature(response) {
   document.querySelector("#city-name").innerHTML = response.data.name; // consolidated line - can update rest for this later
 
-  let currTempNum = document.querySelector("#curr-temp-num");
-  currTempNum.innerHTML = Math.round(response.data.main.temp);
+  tempC = response.data.main.temp;
+
+  let currTempNum = document.querySelector(".curr-temp-num");
+  currTempNum.innerHTML = Math.round(tempC);
 
   let currWeather = document.querySelector(".weather-type");
   currWeather.innerHTML = response.data.weather[0].description;
@@ -137,60 +139,42 @@ function showLocationTemperature() {
   navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
 
+// Celcius & Farenheit conversion - DEFAULT: CELSIUS
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let currTempNum = document.querySelector(".curr-temp-num");
+
+  let tempF = (tempC * 9) / 5 + 32;
+  currTempNum.innerHTML = Math.round(tempF);
+
+  currTempC.classList.remove("active");
+  currTempF.classList.add("active");
+}
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let currTempNum = document.querySelector(".curr-temp-num");
+
+  currTempNum.innerHTML = Math.round(tempC);
+
+  currTempF.classList.remove("active");
+  currTempC.classList.add("active");
+}
+
+let tempC = null;
+
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
 
 let myLocationButton = document.querySelector(".location-button");
 myLocationButton.addEventListener("click", showLocationTemperature);
 
+let currTempF = document.querySelector(".curr-temp-f");
+currTempF.addEventListener("click", convertToFahrenheit);
+
+let currTempC = document.querySelector(".curr-temp-c");
+currTempC.addEventListener("click", convertToCelsius);
+
 // show default city on reload
 searchCity("Barcelona");
-
-// Celcius & Farenheit conversion - DEFAULT: CELSIUS
-
-// let farenheitClicked = false;
-
-// function convertToFahrenheit(event) {
-//   event.preventDefault();
-
-//   let currTempF = document.querySelector(".curr-temp-f");
-//   let currTempC = document.querySelector(".curr-temp-c");
-
-//   let currTemp = document.querySelector("#curr-temp-num");
-//   let nowTemp = 12; // dummy data - CELSIUS
-//   currTemp.innerHTML = Math.round((nowTemp * 9) / 5 + 32);
-
-//   currTempF.classList.remove("temp-weight-light");
-//   currTempC.classList.remove("temp-weight-normal");
-
-//   currTempC.classList.add("temp-weight-light");
-//   event.target.classList.add("temp-weight-normal");
-
-//   farenheitClicked = true;
-// }
-
-// let currTempF = document.querySelector(".curr-temp-f");
-// currTempF.addEventListener("click", convertToFahrenheit);
-
-// function convertToCelsius(event) {
-//   event.preventDefault();
-
-//   let currTempF = document.querySelector(".curr-temp-f");
-//   let currTempC = document.querySelector(".curr-temp-c");
-
-//   let currTemp = document.querySelector("#curr-temp-num");
-//   let nowTemp = 53.6; // dummy data - FARENHEIT
-
-//   if (farenheitClicked) {
-//     currTemp.innerHTML = Math.round(((nowTemp - 32) * 5) / 9);
-//   }
-
-//   currTempF.classList.remove("temp-weight-normal");
-//   currTempC.classList.remove("temp-weight-light");
-
-//   currTempF.classList.add("temp-weight-light");
-//   event.target.classList.add("temp-weight-normal");
-// }
-
-// let currTempC = document.querySelector(".curr-temp-c");
-// currTempC.addEventListener("click", convertToCelsius);
