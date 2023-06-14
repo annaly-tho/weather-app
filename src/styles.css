@@ -206,3 +206,17 @@ hr {
   font-size: 20px;
   margin: 5px auto;
 }
+
+.open-source-link {
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.github-repository-link {
+  text-decoration: none;
+}
+
+.github-user {
+  color: rgb(66, 66, 66);
+}
