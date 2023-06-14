@@ -118,12 +118,6 @@ function handleSubmit(event) {
   searchCity(searchCityInput);
 }
 
-let searchForm = document.querySelector("#search-city");
-searchForm.addEventListener("submit", handleSubmit);
-
-// show default city on reload
-searchCity("Barcelona");
-
 // Current location BUTTON
 
 function getCurrentLocation(position) {
@@ -143,8 +137,14 @@ function showLocationTemperature() {
   navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
 
+let searchForm = document.querySelector("#search-city");
+searchForm.addEventListener("submit", handleSubmit);
+
 let myLocationButton = document.querySelector(".location-button");
 myLocationButton.addEventListener("click", showLocationTemperature);
+
+// show default city on reload
+searchCity("Barcelona");
 
 // Celcius & Farenheit conversion - DEFAULT: CELSIUS
 
