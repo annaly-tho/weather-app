@@ -144,14 +144,20 @@ body {
   text-transform: capitalize;
 }
 
+.weather-icon img {
+  width: 75px;
+  height: 75px;
+}
+
 hr {
-  margin: 15px 100px;
+  margin: 0 100px 15px;
   color: #a6637ac0;
   align-items: center;
   text-align: center;
 }
 
 .weather-quote {
+  font-size: 16px;
   min-width: 160px;
   color: #a6637ac0;
   text-align: center;
