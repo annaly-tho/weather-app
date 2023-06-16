@@ -92,7 +92,7 @@ body {
 }
 
 #city-name {
-  margin-top: 70px;
+  margin-top: 95px;
   margin-bottom: 0;
   color: #ffffff;
   font-size: 40px;
@@ -148,13 +148,8 @@ body {
   text-transform: capitalize;
 }
 
-.weather-icon img {
-  width: 75px;
-  height: 75px;
-}
-
 hr {
-  margin: 0 100px 15px;
+  margin: 15px 100px;
   color: #a6637ac0;
   align-items: center;
   text-align: center;
@@ -178,7 +173,7 @@ hr {
 }
 
 .weather-fcst {
-  margin-top: 195px;
+  margin-top: 185px;
 }
 
 .col {
