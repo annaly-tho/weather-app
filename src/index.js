@@ -33,7 +33,8 @@ let cityDayTime = document.querySelector("#city-day-time");
 
 cityDayTime.innerHTML = formatDate(now);
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
 
@@ -65,6 +66,17 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/onecall";
+  let unit = "metric";
+  let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
+  let apiUrl = `${apiEndpoint}?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
 // Update city name after user submits form
 
 function showTemperature(response) {
@@ -85,6 +97,8 @@ function showTemperature(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function showQuote(response) {
@@ -203,8 +217,6 @@ function convertToCelsius(event) {
 }
 
 let tempC = null;
-
-displayForecast();
 
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
