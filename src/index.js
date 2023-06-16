@@ -33,6 +33,38 @@ let cityDayTime = document.querySelector("#city-day-time");
 
 cityDayTime.innerHTML = formatDate(now);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+
+  let days = ["Thu", "Fri", "Sat", "Sum", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+         <div class="col">
+            <div class="fcst">
+              <div class="fcst-date">${day}</div>
+              <img
+                src="https://openweathermap.org/img/wn/10d@2x.png"
+                alt=""
+                width="42"
+              />
+              <div class="fcst-temp">
+                <span class="fcst-temp-min">10°</span>
+                <span class="fcst-temp-slash">|</span>
+                <span class="fcst-temp-max">20°</span>
+              </div>
+            </div>
+          </div>
+        
+      `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // Update city name after user submits form
 
 function showTemperature(response) {
@@ -171,6 +203,8 @@ function convertToCelsius(event) {
 }
 
 let tempC = null;
+
+displayForecast();
 
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
