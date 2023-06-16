@@ -200,9 +200,8 @@ hr {
   font-weight: 250;
 }
 
-.fcst-img {
-  font-size: 20px;
-  margin: 5px auto;
+.fcst-temp-min {
+  opacity: 0.7;
 }
 
 .open-source-link {
