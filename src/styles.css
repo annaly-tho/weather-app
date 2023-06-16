@@ -51,16 +51,20 @@ body {
   fill: rgba(255, 255, 255, 0.3);
 }
 
+.weather-app-wrapper {
+  max-width: 600px;
+  margin: 40px auto 14px;
+  text-align: center;
+}
+
 .weather-app {
   background-image: url("../images/evening.jpg"); /* folder "images" located at the same level as the CSS file, */
   background-size: auto;
   /* background-repeat: no-repeat; */
-  max-width: 600px;
-  margin: 40px auto 14px;
+
   padding: 50px 50px 40px 50px;
   border-radius: 10px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 
 #search-city {
@@ -207,7 +211,7 @@ hr {
 .open-source-link {
   font-size: 14px;
   font-weight: 300;
-  text-align: center;
+  margin-top: 10px;
 }
 
 .github-repository-link {
