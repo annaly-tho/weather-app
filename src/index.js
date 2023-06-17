@@ -97,13 +97,12 @@ function displayQuote(response) {
   let temperature = Math.round(response.data.main.temp);
   let weatherQuote = document.querySelector(".quote");
 
-  if (temperature < 10) {
-    weatherQuote.innerHTML = `“The cold never bothered me anyway.” – Elsa`;
-    if (temperature > 28) {
-      weatherQuote.innerHTML = `“Never kick a fresh turd on a hot day.” – Harry S. Truman`;
-    }
+  if (temperature > 28) {
+    weatherQuote.innerHTML = `“Never kick a fresh turd on a hot day.” - Harry S. Truman`;
+  } else if (temperature < 10) {
+    weatherQuote.innerHTML = `“The cold never bothered me anyway.” - Elsa`;
   } else {
-    weatherQuote.innerHTML = `“There's no such thing as bad weather, just soft people.” – Bill Bowerman`;
+    weatherQuote.innerHTML = `“There's no such thing as bad weather, just soft people.” - Bill Bowerman`;
   }
 }
 
