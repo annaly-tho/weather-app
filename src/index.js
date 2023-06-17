@@ -63,7 +63,6 @@ function displayForecast(response) {
               </div>
             </div>
           </div>
-        
       `;
     }
   });
@@ -127,11 +126,11 @@ function getMeteorology(response) {
   weatherQuote.addEventListener("mouseout", showOriginalQuote);
 }
 
-function search(city) {
+function search(cityInput) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = "b42ff038129e72096b5d306da3a6a27d";
   let unit = "metric";
-  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
+  let apiUrl = `${apiEndpoint}?q=${cityInput}&appid=${apiKey}&units=${unit}`;
 
   axios
     .get(apiUrl)
@@ -158,8 +157,8 @@ function search(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#search-city-input").value;
-  search(city);
+  let cityInput = document.querySelector("#search-city-input");
+  search(cityInput.value);
 }
 
 function getCurrentLocation(position) {
