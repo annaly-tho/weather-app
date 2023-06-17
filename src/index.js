@@ -24,11 +24,6 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-let now = new Date();
-let cityDayTime = document.querySelector("#city-day-time");
-
-cityDayTime.innerHTML = formatDate(now);
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -89,17 +84,12 @@ function getForecast(coordinates) {
 }
 
 function displayTemperature(response) {
-  document.querySelector("#city-name").innerHTML = response.data.name; // consolidated line - can update rest for this later
-
-  temperatureCelsius = response.data.main.temp;
-
-  let currentTemperatureDigit = document.querySelector(
-    ".current-temperature-digit"
+  document.querySelector("#city-name").innerHTML = response.data.name;
+  document.querySelector(".current-temperature-digit").innerHTML = Math.round(
+    response.data.main.temp
   );
-  currentTemperatureDigit.innerHTML = Math.round(temperatureCelsius);
-
-  let weatherType = document.querySelector(".weather-type");
-  weatherType.innerHTML = response.data.weather[0].description;
+  document.querySelector(".weather-type").innerHTML =
+    response.data.weather[0].description;
 
   getForecast(response.data.coord);
 }
@@ -191,12 +181,10 @@ function showLocationTemperature() {
 
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let currentTemperatureDigit = document.querySelector(
-    ".current-temperature-digit"
-  );
-
   let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
-  currentTemperatureDigit.innerHTML = Math.round(temperatureFahrenheit);
+  document.querySelector(".current-temperature-digit").innerHTML = Math.round(
+    temperatureFahrenheit
+  );
 
   currtemperatureCelsius.classList.remove("active");
   currtemperatureFahrenheit.classList.add("active");
@@ -204,11 +192,8 @@ function convertToFahrenheit(event) {
 
 function convertToCelsius(event) {
   event.preventDefault();
-  let currentTemperatureDigit = document.querySelector(
-    ".current-temperature-digit"
-  );
-
-  currentTemperatureDigit.innerHTML = Math.round(temperatureCelsius);
+  document.querySelector(".current-temperature-digit").innerHTML =
+    Math.round(temperatureCelsius);
 
   currtemperatureFahrenheit.classList.remove("active");
   currtemperatureCelsius.classList.add("active");
@@ -231,5 +216,8 @@ let currtemperatureCelsius = document.querySelector(
   ".current-temperature-celsius"
 );
 currtemperatureCelsius.addEventListener("click", convertToCelsius);
+
+let now = new Date();
+document.querySelector("#city-day-time").innerHTML = formatDate(now);
 
 search("Barcelona");
