@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- axios -->
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <title>Weather App</title>
 
@@ -22,12 +21,6 @@
       rel="stylesheet"
     />
 
-    <!-- EMOJI KIT -->
-    <script
-      src="https://kit.fontawesome.com/3035391592.js"
-      crossorigin="anonymous"
-    ></script>
-
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
@@ -35,8 +28,7 @@
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
-          <div class="weather-city row">
-            <!-- Search form -->
+          <div class="row">
             <form class="input-group col" id="search-city">
               <input
                 type="search"
@@ -59,26 +51,28 @@
               My Location
             </button>
           </div>
+
           <h1 id="city-name"></h1>
           <p id="city-day-time"></p>
-          <div class="weather-curr row">
-            <div class="curr-temp">
-              <span class="curr-temp-num"></span
-              ><span class="curr-temp-degrees">° </span
-              ><a href="#" class="curr-temp-c active">C</a
-              ><span class="curr-temp-bar"> | </span
-              ><a href="#" class="curr-temp-f">F</a>
+
+          <div class="current-weather-info row">
+            <div class="current-temperature">
+              <span class="current-temperature-digit"></span
+              ><span class="degree-symbol">° </span
+              ><a href="#" class="current-temperature-celsius active">C</a
+              ><span class="vertical-bar"> | </span
+              ><a href="#" class="current-temperature-fahrenheit">F</a>
             </div>
             <div class="weather-type"></div>
-
             <div><hr /></div>
           </div>
+
           <div class="weather-quote">
             <div class="quote"></div>
             <div class="hover-meteorology">See Meteorology</div>
           </div>
 
-          <div class="weather-fcst" id="forecast"></div>
+          <div class="weather-forecast" id="forecast"></div>
 
           <div class="custom-shape-divider-top-1685594347">
             <svg

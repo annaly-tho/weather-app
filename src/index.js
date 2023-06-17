@@ -1,5 +1,3 @@
-// Current date & time
-
 function formatDate(date) {
   let days = [
     "Sunday",
@@ -25,8 +23,6 @@ function formatDate(date) {
 
   return `${day} ${hours}:${minutes}`;
 }
-
-// --------------------TO UPDATE: FOR CITY DATE/TIME - AXIOS------------------------
 
 let now = new Date();
 let cityDayTime = document.querySelector("#city-day-time");
@@ -92,23 +88,23 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-// Update city name after user submits form
-
-function showTemperature(response) {
+function displayTemperature(response) {
   document.querySelector("#city-name").innerHTML = response.data.name; // consolidated line - can update rest for this later
 
-  tempC = response.data.main.temp;
+  temperatureCelsius = response.data.main.temp;
 
-  let currTempNum = document.querySelector(".curr-temp-num");
-  currTempNum.innerHTML = Math.round(tempC);
+  let currentTemperatureDigit = document.querySelector(
+    ".current-temperature-digit"
+  );
+  currentTemperatureDigit.innerHTML = Math.round(temperatureCelsius);
 
-  let currWeather = document.querySelector(".weather-type");
-  currWeather.innerHTML = response.data.weather[0].description;
+  let weatherType = document.querySelector(".weather-type");
+  weatherType.innerHTML = response.data.weather[0].description;
 
   getForecast(response.data.coord);
 }
 
-function showQuote(response) {
+function displayQuote(response) {
   let temperature = Math.round(response.data.main.temp);
   let weatherQuote = document.querySelector(".quote");
 
@@ -141,31 +137,27 @@ function getMeteorology(response) {
   weatherQuote.addEventListener("mouseout", showOriginalQuote);
 }
 
-// Search city
-function searchCity(searchCityInput) {
+function search(city) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = "b42ff038129e72096b5d306da3a6a27d";
   let unit = "metric";
-  let apiUrl = `${apiEndpoint}?q=${searchCityInput}&appid=${apiKey}&units=${unit}`;
+  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
 
   axios
     .get(apiUrl)
     .then((response) => {
       if (response.data.cod === "404") {
-        // City not found
         throw new Error("City not found. Please enter a valid city name.");
       } else {
-        showTemperature(response);
-        showQuote(response);
+        displayTemperature(response);
+        displayQuote(response);
         getMeteorology(response);
       }
     })
     .catch((error) => {
       if (error.response.status === 404) {
-        // City not found
         alert("City not found. Please enter a valid city name.");
       } else {
-        // Other errors
         alert(
           "An error occurred while fetching weather data. Please try again later."
         );
@@ -174,14 +166,11 @@ function searchCity(searchCityInput) {
     });
 }
 
-// -----------TO UPDATE: Clear search box after submitted-----------------
 function handleSubmit(event) {
   event.preventDefault();
-  let searchCityInput = document.querySelector("#search-city-input").value;
-  searchCity(searchCityInput);
+  let city = document.querySelector("#search-city-input").value;
+  search(city);
 }
-
-// Current location BUTTON
 
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
@@ -192,38 +181,40 @@ function getCurrentLocation(position) {
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
 
-  axios.get(apiUrl).then(showTemperature);
-  axios.get(apiUrl).then(showQuote);
+  axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayQuote);
 }
 
 function showLocationTemperature() {
   navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
 
-// Celcius & Farenheit conversion - DEFAULT: CELSIUS
-
 function convertToFahrenheit(event) {
   event.preventDefault();
-  let currTempNum = document.querySelector(".curr-temp-num");
+  let currentTemperatureDigit = document.querySelector(
+    ".current-temperature-digit"
+  );
 
-  let tempF = (tempC * 9) / 5 + 32;
-  currTempNum.innerHTML = Math.round(tempF);
+  let temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
+  currentTemperatureDigit.innerHTML = Math.round(temperatureFahrenheit);
 
-  currTempC.classList.remove("active");
-  currTempF.classList.add("active");
+  currtemperatureCelsius.classList.remove("active");
+  currtemperatureFahrenheit.classList.add("active");
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
-  let currTempNum = document.querySelector(".curr-temp-num");
+  let currentTemperatureDigit = document.querySelector(
+    ".current-temperature-digit"
+  );
 
-  currTempNum.innerHTML = Math.round(tempC);
+  currentTemperatureDigit.innerHTML = Math.round(temperatureCelsius);
 
-  currTempF.classList.remove("active");
-  currTempC.classList.add("active");
+  currtemperatureFahrenheit.classList.remove("active");
+  currtemperatureCelsius.classList.add("active");
 }
 
-let tempC = null;
+let temperatureCelsius = null;
 
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
@@ -231,11 +222,14 @@ searchForm.addEventListener("submit", handleSubmit);
 let myLocationButton = document.querySelector(".location-button");
 myLocationButton.addEventListener("click", showLocationTemperature);
 
-let currTempF = document.querySelector(".curr-temp-f");
-currTempF.addEventListener("click", convertToFahrenheit);
+let currtemperatureFahrenheit = document.querySelector(
+  ".current-temperature-fahrenheit"
+);
+currtemperatureFahrenheit.addEventListener("click", convertToFahrenheit);
 
-let currTempC = document.querySelector(".curr-temp-c");
-currTempC.addEventListener("click", convertToCelsius);
+let currtemperatureCelsius = document.querySelector(
+  ".current-temperature-celsius"
+);
+currtemperatureCelsius.addEventListener("click", convertToCelsius);
 
-// show default city on reload
-searchCity("Barcelona");
+search("Barcelona");

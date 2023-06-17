@@ -13,7 +13,7 @@ body {
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  z-index: -1; /* Set a negative z-index to position the shape divider behind other elements */
+  z-index: -1;
 }
 
 .custom-shape-divider-top-1685594347 svg {
@@ -58,10 +58,8 @@ body {
 }
 
 .weather-app {
-  background-image: url("../images/evening.jpg"); /* folder "images" located at the same level as the CSS file, */
+  background-image: url("../images/evening.jpg");
   background-size: auto;
-  /* background-repeat: no-repeat; */
-
   padding: 50px 50px 40px 50px;
   border-radius: 10px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
@@ -107,19 +105,19 @@ body {
   font-weight: lighter;
 }
 
-.curr-temp {
+.current-temperature {
   padding-left: 75px;
   margin: 0 auto;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.curr-temp-num {
+.current-temperature-digit {
   color: #ffffff;
   font-size: 100px;
   line-height: 90px;
 }
 
-.curr-temp-degrees {
+.degree-symbol {
   color: #ffffff;
   font-size: 25px;
   vertical-align: top;
@@ -127,9 +125,9 @@ body {
   font-weight: normal;
 }
 
-.curr-temp-bar,
-.curr-temp-c,
-.curr-temp-f {
+.vertical-bar,
+.current-temperature-celsius,
+.current-temperature-fahrenheit {
   color: #ffffff;
   font-size: 25px;
   vertical-align: top;
@@ -172,7 +170,7 @@ hr {
   margin-top: 3px;
 }
 
-.weather-fcst {
+.weather-forecast {
   margin-top: 185px;
 }
 
