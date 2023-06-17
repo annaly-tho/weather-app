@@ -125,6 +125,12 @@ function displayMeteorology(response) {
   weatherQuote.addEventListener("mouseout", showOriginalQuote);
 }
 
+function displayWeatherData(response) {
+  displayTemperature(response);
+  displayQuote(response);
+  displayMeteorology(response);
+}
+
 function search(cityInput) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = "b42ff038129e72096b5d306da3a6a27d";
@@ -137,9 +143,7 @@ function search(cityInput) {
       if (response.data.cod === "404") {
         throw new Error("City not found. Please enter a valid city name.");
       } else {
-        displayTemperature(response);
-        displayQuote(response);
-        displayMeteorology(response);
+        displayWeatherData(response);
       }
     })
     .catch((error) => {
@@ -169,9 +173,9 @@ function getCurrentLocation(position) {
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
 
-  axios.get(apiUrl).then(displayTemperature);
-  axios.get(apiUrl).then(displayQuote);
-  axios.get(apiUrl).then(displayMeteorology);
+  axios.get(apiUrl).then((response) => {
+    displayWeatherData(response);
+  });
 }
 
 function showLocationTemperature() {
