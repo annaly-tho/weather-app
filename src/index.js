@@ -106,7 +106,7 @@ function displayQuote(response) {
   }
 }
 
-function getMeteorology(response) {
+function displayMeteorology(response) {
   let humidity = response.data.main.humidity;
   let speed = Math.round(response.data.wind.speed);
   let meteorology = `Humidity: ${humidity}%<br />Wind: ${speed}km/h<br /><br />`;
@@ -139,7 +139,7 @@ function search(cityInput) {
       } else {
         displayTemperature(response);
         displayQuote(response);
-        getMeteorology(response);
+        displayMeteorology(response);
       }
     })
     .catch((error) => {
@@ -171,6 +171,7 @@ function getCurrentLocation(position) {
 
   axios.get(apiUrl).then(displayTemperature);
   axios.get(apiUrl).then(displayQuote);
+  axios.get(apiUrl).then(displayMeteorology);
 }
 
 function showLocationTemperature() {
