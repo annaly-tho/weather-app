@@ -72,8 +72,6 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
-
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/onecall";
   let unit = "metric";
   let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
@@ -173,12 +171,10 @@ function getCurrentLocation(position) {
   let unit = "metric";
   let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
 
-  axios.get(apiUrl).then((response) => {
-    displayWeatherData(response);
-  });
+  axios.get(apiUrl).then(displayWeatherData);
 }
 
-function showLocationTemperature() {
+function displayCurrentLocationTemperature() {
   navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
 
@@ -204,11 +200,14 @@ function convertToCelsius(event) {
 
 let temperatureCelsius = null;
 
+let now = new Date();
+document.querySelector("#city-day-time").innerHTML = formatDate(now);
+
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
 
 let myLocationButton = document.querySelector(".location-button");
-myLocationButton.addEventListener("click", showLocationTemperature);
+myLocationButton.addEventListener("click", displayCurrentLocationTemperature);
 
 let currtemperatureFahrenheit = document.querySelector(
   ".current-temperature-fahrenheit"
@@ -219,8 +218,5 @@ let currtemperatureCelsius = document.querySelector(
   ".current-temperature-celsius"
 );
 currtemperatureCelsius.addEventListener("click", convertToCelsius);
-
-let now = new Date();
-document.querySelector("#city-day-time").innerHTML = formatDate(now);
 
 search("Barcelona");
