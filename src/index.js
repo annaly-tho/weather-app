@@ -1,4 +1,4 @@
-function formatDate(date) {
+function displayCityDayTime(response) {
   let days = [
     "Sunday",
     "Monday",
@@ -8,20 +8,28 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
+  let utcOffset = response.data.timezone / 3600;
+  let timezone = "";
 
-  let day = days[now.getDay()];
-
-  let hours = now.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
+  if (utcOffset > 0) {
+    timezone = `Etc/GMT-${Math.abs(utcOffset)}`;
+  } else {
+    timezone = `Etc/GMT+${Math.abs(utcOffset)}`;
   }
 
-  let minutes = now.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+  let apiUrl = `https://worldtimeapi.org/api/timezone/${timezone}`;
 
-  return `${day} ${hours}:${minutes}`;
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      let day = days[data.day_of_week];
+      let datetimeString = data.datetime;
+      let time = datetimeString.split("T")[1].slice(0, 5);
+      document.querySelector("#city-day-time").innerHTML = `${day} ${time}`;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 function formatDay(timestamp) {
@@ -124,6 +132,7 @@ function displayMeteorology(response) {
 }
 
 function displayWeatherData(response) {
+  displayCityDayTime(response);
   displayTemperature(response);
   displayQuote(response);
   displayMeteorology(response);
@@ -199,9 +208,6 @@ function convertToCelsius(event) {
 }
 
 let temperatureCelsius = null;
-
-let now = new Date();
-document.querySelector("#city-day-time").innerHTML = formatDate(now);
 
 let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
