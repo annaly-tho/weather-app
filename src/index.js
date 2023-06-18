@@ -30,7 +30,7 @@ function displayCityDayTime(response) {
     "Friday",
     "Saturday",
   ];
-  let utcOffset = response.data.timezone / 3600;
+  let utcOffset = Math.round(response.data.timezone / 3600); // Conform to timezone API - whole-hour offsets only
   let timezone = "";
 
   if (utcOffset > 0) {
