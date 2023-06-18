@@ -87,8 +87,8 @@ function displayForecast(response) {
         forecastHTML +
         `
          <div class="col">
-            <div class="fcst">
-              <div class="fcst-date">${formatDay(forecastDay.dt)}</div>
+            <div class="forecast">
+              <div class="forecast-date">${formatDay(forecastDay.dt)}</div>
               <img
                 src="https://openweathermap.org/img/wn/${
                   forecastDay.weather[0].icon
@@ -96,12 +96,12 @@ function displayForecast(response) {
                 alt=""
                 width="42"
               />
-              <div class="fcst-temp">
-                <span class="fcst-temp-min">${Math.round(
+              <div class="forecast-temperature">
+                <span class="forecast-temperature-min">${Math.round(
                   forecastDay.temp.min
                 )}°</span>
-                <span class="fcst-temp-slash">|</span>
-                <span class="fcst-temp-max">${Math.round(
+                <span class="forecast-vertical-bar">|</span>
+                <span class="forecast-temperature-max">${Math.round(
                   forecastDay.temp.max
                 )}°</span>
               </div>

@@ -144,10 +144,6 @@ body {
   font-weight: lighter;
 }
 
-.curr-temp .active {
-  font-weight: normal;
-}
-
 .weather-type {
   color: #ffffff;
   font-size: 25px;
@@ -187,7 +183,7 @@ hr {
   padding: 7px;
 }
 
-.fcst {
+.forecast {
   color: #ffffff;
   font-weight: 350;
   text-align: center;
@@ -198,15 +194,15 @@ hr {
   transition: all 200ms ease-in-out;
 }
 
-.fcst:hover {
+.forecast:hover {
   background-color: rgba(255, 255, 255, 0.35);
 }
 
-.fcst-date {
+.forecast-date {
   font-weight: 250;
 }
 
-.fcst-temp-min {
+.forecast-temperature-min {
   opacity: 0.7;
 }
 
