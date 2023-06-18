@@ -1,7 +1,5 @@
-function displayBackgroundImage(data) {
-  let datetimeString = data.datetime;
-  let hourString = datetimeString.slice(11, 13);
-  let hour = parseInt(hourString);
+function displayBackgroundImage(hours) {
+  let hour = hours;
 
   let weatherAppElement = document.querySelector(".weather-app");
 
@@ -63,7 +61,7 @@ function displayCityDayTime(response) {
         minute: "numeric",
       })}`;
 
-      displayBackgroundImage(data);
+      displayBackgroundImage(hours);
     })
     .catch((error) => {
       console.error("Error:", error);
