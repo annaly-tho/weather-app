@@ -25,7 +25,21 @@ function displayCityDayTime(response) {
       let day = days[data.day_of_week];
       let datetimeString = data.datetime;
       let time = datetimeString.split("T")[1].slice(0, 5);
-      document.querySelector("#city-day-time").innerHTML = `${day} ${time}`;
+
+      let timeParts = time.split(":");
+      let hours = parseInt(timeParts[0]);
+      let minutes = parseInt(timeParts[1]);
+
+      let dateTime = new Date();
+      dateTime.setHours(hours);
+      dateTime.setMinutes(minutes);
+
+      document.querySelector(
+        "#city-day-time"
+      ).innerHTML = `${day} ${dateTime.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "numeric",
+      })}`;
     })
     .catch((error) => {
       console.error("Error:", error);
