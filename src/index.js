@@ -165,10 +165,15 @@ function search(cityInput) {
     });
 }
 
+function clearSearchForm() {
+  document.querySelector("#search-city-input").value = "";
+}
+
 function handleSubmit(event) {
   event.preventDefault();
-  let cityInput = document.querySelector("#search-city-input");
-  search(cityInput.value);
+  let cityInput = document.querySelector("#search-city-input").value;
+  search(cityInput);
+  clearSearchForm();
 }
 
 function getCurrentLocation(position) {
