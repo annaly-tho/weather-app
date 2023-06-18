@@ -1,3 +1,25 @@
+function displayBackgroundImage(data) {
+  let datetimeString = data.datetime;
+  let hourString = datetimeString.slice(11, 13);
+  let hour = parseInt(hourString);
+
+  let weatherAppElement = document.querySelector(".weather-app");
+
+  if (hour >= 6 && hour < 12) {
+    weatherAppElement.classList.remove("evening");
+    weatherAppElement.classList.remove("night");
+    weatherAppElement.classList.add("morning");
+  } else if (hour >= 12 && hour <= 18) {
+    weatherAppElement.classList.remove("morning");
+    weatherAppElement.classList.remove("night");
+    weatherAppElement.classList.add("evening");
+  } else {
+    weatherAppElement.classList.remove("morning");
+    weatherAppElement.classList.remove("evening");
+    weatherAppElement.classList.add("night");
+  }
+}
+
 function displayCityDayTime(response) {
   let days = [
     "Sunday",
@@ -40,6 +62,8 @@ function displayCityDayTime(response) {
         hour: "numeric",
         minute: "numeric",
       })}`;
+
+      displayBackgroundImage(data);
     })
     .catch((error) => {
       console.error("Error:", error);

@@ -58,11 +58,22 @@ body {
 }
 
 .weather-app {
-  background-image: url("../images/evening.jpg");
   background-size: auto;
   padding: 50px 50px 40px 50px;
   border-radius: 10px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.morning {
+  background-image: url("../images/morning.jpg");
+}
+
+.evening {
+  background-image: url("../images/evening.jpg");
+}
+
+.night {
+  background-image: url("../images/night.jpg");
 }
 
 #search-city {
