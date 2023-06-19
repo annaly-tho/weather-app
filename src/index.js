@@ -290,14 +290,10 @@ searchForm.addEventListener("submit", handleSubmit);
 let myLocationButton = document.querySelector(".location-button");
 myLocationButton.addEventListener("click", displayCurrentLocationTemperature);
 
-let currtemperatureFahrenheit = document.querySelector(
-  ".current-temperature-fahrenheit"
-);
+let currtemperatureFahrenheit = document.querySelector(".unit-fahrenheit");
 currtemperatureFahrenheit.addEventListener("click", convertToFahrenheit);
 
-let currtemperatureCelsius = document.querySelector(
-  ".current-temperature-celsius"
-);
+let currtemperatureCelsius = document.querySelector(".unit-celsius");
 currtemperatureCelsius.addEventListener("click", convertToCelsius);
 
 search("Barcelona");

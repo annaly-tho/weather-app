@@ -126,22 +126,19 @@ body {
   line-height: 90px;
 }
 
-.degree-symbol {
-  color: #ffffff;
-  font-size: 25px;
-  vertical-align: top;
-  text-decoration: none;
-  font-weight: normal;
-}
-
+.degree-symbol,
 .vertical-bar,
-.current-temperature-celsius,
-.current-temperature-fahrenheit {
+.unit-celsius,
+.unit-fahrenheit {
   color: #ffffff;
   font-size: 25px;
   vertical-align: top;
   text-decoration: none;
   font-weight: lighter;
+}
+
+.degree-symbol {
+  font-weight: normal;
 }
 
 .current-temperature .active {
@@ -216,7 +213,7 @@ hr {
 
 .github-repository-link {
   text-decoration: none;
-  color: #c98f44;
+  color: #c29357;
 }
 
 .github-user {
