@@ -98,7 +98,7 @@ body {
   margin-left: 8px;
 }
 
-#city-name {
+.city-name {
   margin-top: 95px;
   margin-bottom: 0;
   color: #ffffff;
@@ -106,7 +106,7 @@ body {
   font-weight: lighter;
 }
 
-#city-day-time {
+.city-day-time {
   margin-top: 0;
   margin-bottom: 20px;
   color: #ffffffec;

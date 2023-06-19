@@ -55,7 +55,7 @@ function displayCityDayTime(response) {
       dateTime.setMinutes(minutes);
 
       document.querySelector(
-        "#city-day-time"
+        ".city-day-time"
       ).innerHTML = `${day} ${dateTime.toLocaleTimeString([], {
         hour: "numeric",
         minute: "numeric",
@@ -126,7 +126,7 @@ function getForecast(coordinates) {
 }
 
 function displayTemperature(response) {
-  document.querySelector("#city-name").innerHTML = response.data.name;
+  document.querySelector(".city-name").innerHTML = response.data.name;
   document.querySelector(".current-temperature-digit").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -240,7 +240,7 @@ function displayCurrentLocationDayTime() {
   }
 
   document.querySelector(
-    "#city-day-time"
+    ".city-day-time"
   ).innerHTML = `${day} ${hours}:${minutes}`;
 }
 
