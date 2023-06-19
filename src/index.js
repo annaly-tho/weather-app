@@ -213,6 +213,35 @@ function handleSubmit(event) {
   clearSearchForm();
 }
 
+function displayCurrentLocationDayTime() {
+  let userDayTime = new Date();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = days[userDayTime.getDay()];
+
+  let hours = userDayTime.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = userDayTime.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  document.querySelector(
+    "#city-day-time"
+  ).innerHTML = `${day} ${hours}:${minutes}`;
+}
+
 function getCurrentLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -223,6 +252,8 @@ function getCurrentLocation(position) {
   let apiUrl = `${apiEndpoint}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${unit}`;
 
   axios.get(apiUrl).then(displayWeatherData);
+
+  displayCurrentLocationDayTime();
 }
 
 function displayCurrentLocationTemperature() {
