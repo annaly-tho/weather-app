@@ -144,6 +144,10 @@ body {
   font-weight: lighter;
 }
 
+.current-temperature .active {
+  font-weight: normal;
+}
+
 .weather-type {
   color: #ffffff;
   font-size: 25px;
@@ -154,23 +158,19 @@ body {
 hr {
   margin: 15px 100px;
   color: #a6637ac0;
-  align-items: center;
-  text-align: center;
 }
 
 .weather-quote {
   font-size: 16px;
   min-width: 160px;
   color: #a6637ac0;
-  text-align: center;
   margin: 0 100px 0 100px;
 }
 
 .hover-meteorology {
-  color: #ffffffe8;
+  color: #ffffff;
   font-size: 14px;
   font-style: italic;
-  text-align: center;
   text-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   margin-top: 3px;
 }
@@ -185,8 +185,6 @@ hr {
 
 .forecast {
   color: #ffffff;
-  font-weight: 350;
-  text-align: center;
   background-color: rgba(255, 255, 255, 0.15);
   padding: 27px 10px;
   border-radius: 5px;
@@ -218,7 +216,7 @@ hr {
 
 .github-repository-link {
   text-decoration: none;
-  color: #c77e1e;
+  color: #c98f44;
 }
 
 .github-user {
