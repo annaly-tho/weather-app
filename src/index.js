@@ -133,6 +133,8 @@ function displayTemperature(response) {
   document.querySelector(".weather-type").innerHTML =
     response.data.weather[0].description;
 
+  temperatureCelsius = Math.round(response.data.main.temp);
+
   getForecast(response.data.coord);
 }
 
