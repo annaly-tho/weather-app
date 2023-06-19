@@ -95,6 +95,7 @@ function displayForecast(response) {
                 }@2x.png"
                 alt=""
                 width="42"
+                class="forecast-image"
               />
               <div class="forecast-temperature">
                 <span class="forecast-temperature-min">${Math.round(
